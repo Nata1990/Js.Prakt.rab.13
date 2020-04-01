@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery фильтры</title>
+    <meta charset=utf-8>
+    <script src="jquery-1.5.2.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $("tr:last").css("background-color", "#FFFF00");
+        });
+
+    </script>
+</head>
+
+<body>
+    <p>Установлен желтый цвет фона только для последней строки таблицы.</p>
+    	<table border="1" border-color="black">
+        <tr>
+            <td>№ п/п</td>
+            <td>ФИО студента</td>
+            <td>Количество пропусков</td>
+            <td>Отметка о зачете</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Гроздицкая Виктория Владимировна</td>
+            <td>16</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Дятлова Татьяна Валерьевна</td>
+            <td>18</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Каленик Ирина Андреевна</td>
+            <td>26</td>
+            <td>-</td>
+        </tr>
+    </table>
+</body>
+
+</html>
