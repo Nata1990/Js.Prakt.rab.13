@@ -1,95 +1,84 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <script src="jquery-1.5.2.min.js"></script>
-        <script>
-            $('document').ready(function(){
-                $('#сonfirmEdit').click(function(){
-                    var val1 = $('#editValue').val();
-                    $('.inEdit').text(val1);
-                    $('.inEdit').removeClass();
-                    $('#edit').hide();
-                    $('#add').show();
-                    $('td').css("background-color","white");
-                });
-                $('#cancelEdit').click(function(){
-                    $('#edit').hide();
-                    $('#add').show();
-                    $('td').css("background-color","white");
-                });
-                $('td').click(function(){
-                    $('td').css("background-color","white");
-                    $('#edit').show();
-                    $('#add').hide();
-                    $(this).addClass('inEdit');
-                    var eq1 = $(this).text();
-                    $(this).css("background-color","yellow");
-                    $('#editValue').val(eq1);
-                });
-                $('#confirmAdd').click(function(){
-                    var addName = $('#addName').val();
-                    var addQuantity = $('#addQuantity').val();
-                    console.log(addName+" "+addQuantity);
-                    var oldHtml = $('table').html();
-                    $('table').html(oldHtml+'<tr> <td>'+addName+'</td> <td>'+addQuantity+'</td> </tr>')
-                });
-                $('#cancelAdd').click(function(){
-                    $('#addName').val("Item's name");
-                    $('#addQuantity').val("Item's quantity");
-                })
-            })
-        </script>
-    </head>
-    <body>
-        <table border="1" border-color="black">
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Variant1-6</title>
+    <script src="jquery-1.5.2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".add-row").click(function () {
+                var name = $("#name").val();
+                var count = $("#count").val();
+                var markup = "<tr><td>" + name + "</td><td>" + count + "</td></tr>";
+                $("table tbody").append(markup);
+            });
+
+
+        });
+
+    </script>
+</head>
+
+<body>
+    
+    <table border="1" border-color="black">
             <tr>
                 <td>Название</td><td>Количество</td>
             </tr>
             <tr>
-                <td>Samsung Galaxy A51 4Gb/64Gb Black</td><td>20</td>
+                <td>Samsung Galaxy A51</td><td>20</td>
             </tr>
             <tr>
-                <td>Samsung Galaxy A50 4Gb/64Gb White</td><td>18</td>
+                <td>Samsung Galaxy A50</td><td>18</td>
             </tr>
             <tr>
-                <td>Huawei P30 Lite 4Gb/128Gb Blue</td><td>33</td>
+                <td>Huawei P30 Lite</td><td>33</td>
             </tr>
             <tr>
-                <td>Honor 20 Pro Phantom Blue</td><td>26</td>
+                <td>Honor 20 Pro</td><td>26</td>
             </tr>
             <tr>
-                <td>Huawei P20 lite Black</td><td>18</td>
+                <td>Huawei P20</td><td>18</td>
             </tr>
             <tr>
-                <td>Apple iPhone 11 64Gb Black</td><td>27</td>
+                <td>Apple iPhone 11</td><td>27</td>
             </tr>
             <tr>
-                <td>Samsung Galaxy S10 8Gb/128Gb Black</td><td>10</td>
+                <td>Samsung Galaxy S10</td><td>10</td>
             </tr>
             <tr>
-                <td>Samsung Galaxy S8 64Gb Black</td><td>11</td>
+                <td>Samsung Galaxy S8</td><td>11</td>
             </tr>
             <tr>
-                <td>Huawei P30 Pro 8Gb/256Gb Breathing Crystal</td><td>6</td>
+                <td>Huawei P30 Pro</td><td>6</td>
             </tr>
             <tr>
-                <td>Samsung Galaxy A71 6Gb/128Gb Blue</td><td>19</td>
+                <td>Samsung Galaxy A71</td><td>19</td>
             </tr>
         </table>
-        <br>
-        <div id="edit" hidden>
-            <input type="text" id="editValue" value="Ваш выбор"> <br><br>
-            <button type="button" name="сonfirmEdit" id="сonfirmEdit">Продолжить выбор</button> <br><br>
-            <button type="button" name="cancelEdit" id="cancelEdit">Отменить выбор</button> <br><br>
-        </div>
-        <div id="add">
-            <input type="text" id="addName" value="Ваш выбор"> 
-            <input type="text" id="addQuantity" value="Количество"> <br><br>
-            <button type="button" name="confirmAdd" id="confirmAdd">Добавить</button>
-            <button type="button" name="cancelAdd" id="cancelAdd">Отменить</button>
-        </div>
-        <div id="test">
+		<p>Форма добавления товаров</p>
+    <br />
+    <form>
+        <input type="text" id="name" placeholder="Название товара">
+        <input type="text" id="count" placeholder="Количество">
+        <input type="button" class="add-row" value="Добавить">
+    </form>
+    <br />
+        <script>
+            var tds = document.querySelectorAll('td');
+            for (var i = 0; i < tds.length; i++) {
+                tds[i].addEventListener('click', function func() {
+                    var
+                        input = document.createElement('input'); input.value = this.innerHTML; this.innerHTML = ''; this.appendChild(input); var
+                            td = this; input.addEventListener('blur', function () {
+                                td.innerHTML = this.value; td.addEventListener('click', func);
+                            }); this.removeEventListener('click', func);
+                });
+            }
+        </script>
+    </table>
 
-        </div>
-    </body>
+</body>
+
 </html>
