@@ -2,21 +2,36 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8"/>
     <title>Variant1-6</title>
-    <script src="jquery-1.5.2.min.js"></script>
+    <script src="jquery-1.12.4.js"></script>
     <script>
-        $(document).ready(function () {
-            $(".add-row").click(function () {
-                var name = $("#name").val();
-                var count = $("#count").val();
-                var markup = "<tr><td>" + name + "</td><td>" + count + "</td></tr>";
-                $("table tbody").append(markup);
-            });
+		function add() {
+			var name = $("#name").val(),
+				count = $("#count").val();
 
+			$("table tbody").append("<tr><td>" + name + "</td><td>" + count + "</td></tr>");
+		}
+		
+		function edit() {
+			var $td = $(this),
+				$input = $('<input type="text" />').val($td.html());
+			
+			$input.on('blur', function() {
+				$td.html($(this).val());
+				$('table').on('click', 'td', edit);
+			});
+			
+			$('table').off('click');
+			$td.html($input);
+			$input.focus();
+		}
+	
+        $(function () {
+            $(".add-row").click(add);
 
+			$('table').on('click', 'td', edit);
         });
-
     </script>
 </head>
 
@@ -64,19 +79,6 @@
         <input type="text" id="count" placeholder="Количество">
         <input type="button" class="add-row" value="Добавить">
     </form>
-    <br />
-        <script>
-            var tds = document.querySelectorAll('td');
-            for (var i = 0; i < tds.length; i++) {
-                tds[i].addEventListener('click', function func() {
-                    var
-                        input = document.createElement('input'); input.value = this.innerHTML; this.innerHTML = ''; this.appendChild(input); var
-                            td = this; input.addEventListener('blur', function () {
-                                td.innerHTML = this.value; td.addEventListener('click', func);
-                            }); this.removeEventListener('click', func);
-                });
-            }
-        </script>
     </table>
 
 </body>
